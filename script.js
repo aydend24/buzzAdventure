@@ -2,7 +2,6 @@ var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 var event = isMobile ? 'touchstart' : 'click';
 document.addEventListener(event, jump);
 
-
 var character = document.getElementById("character");
 var block = document.getElementById("block");
 function jump() {
@@ -23,8 +22,6 @@ refreshBtn.addEventListener('click', function () {
 document.body.addEventListener('touchmove', function (event) {
     event.preventDefault();
 }, false);
-
-
 
 var checkAhead = setInterval(function () {
     var characterTop =
