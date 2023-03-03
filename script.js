@@ -1,244 +1,39 @@
-* {
-    padding: 0;
-    margin: 0;
-}
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var event = isMobile ? 'touchstart' : 'click';
+document.addEventListener(event, jump);
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #2F3A6A;
-}
 
-.container {
-    position: relative;
-}
-
-#refresh-btn {
-    position: absolute;
-    top: calc(100% + 20px);
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px;
-    border: 1;
-    border-color: none;
-    background-color: #FFFC00;
-    color: #2F3A6A;
-    font-size: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-#refresh-btn:hover {
-    font-size: 35px;
-    font-weight: bolder;
-    color: #3753d0;
-    background-color: #FFFEAA;
-}
-
-#refresh-btn i {
-    margin-right: 5px;
-}
-
-.container h1 {
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    width: 1000px;
-    transform: translateX(-50%);
-    font-size: 40px;
-    color: #FFFC00;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    /* text-shadow: 1px 1px #fff; */
-}
-
-.container h2 {
-    position: absolute;
-    top: -70px;
-    left: 50%;
-    width: 1000px;
-    transform: translateX(-50%);
-    font-size: 30px;
-    color: #FFFC00;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    /* text-shadow: 1px 1px #fff; */
-}
-
-.container h3 {
-    position: absolute;
-    top: -45px;
-    left: 50%;
-    width: 1000px;
-    transform: translateX(-50%);
-    font-size: 22px;
-    color: #f5f5f5;
-    text-align: center;
-    text-transform: none;
-    letter-spacing: 1px;
-    font-weight: bold;
-    /* text-shadow: 1px 1px #fff; */
-}
-
-.container h4 {
-    position: absolute;
-    top: 600px;
-    left: 50%;
-    width: 1000px;
-    transform: translateX(-50%);
-    font-size: 15px;
-    color: #f5f5f5;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    /* text-shadow: 1px 1px #fff; */
-}
-
-#game {
-    width: 1000px;
-    height: 500px;
-    background: url('background.jpg') no-repeat center center;
-    z-index: -3;
-    border: 1px solid gray;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-#tree {
-    width: 300px;
-    height: 300px;
-    background: url('tree.png') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 215px;
-    left: calc(50% - 61px);
-    animation: tree 2s infinite linear;
-    z-index: -2;
-}
-
-#tree2 {
-    width: 300px;
-    height: 300px;
-    background: url('tree.png') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 215px;
-    left: calc(100% + 61px);
-    animation: tree 2s infinite linear;
-    animation-delay: 0.5s;
-    z-index: -2;
-}
-
-#ukraineflag {
-    width: 225px;
-    height: 275px;
-    background: url('ukraineflag.png') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 230px;
-    left: calc(100% + 61px);
-    animation: tree 2s infinite linear;
-    animation-delay: 0.3s;
-    z-index: -2;
-}
-
-#character {
-    width: 100px;
-    height: 66px;
-    background: url('character.gif') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    top: 434px;
-    left: 20%;
-}
-
-.animate {
-    animation: jump 500ms;
-}
-
-#block {
-    width: 88px;
-    height: 100px;
-    background: url('trashcan.png') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    top: 335px;
-    left: 450px;
-    animation: block 2s infinite linear;
-}
-
-#house {
-    width: 554px;
-    height: 451px;
-    background: url('littlehouse.png') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    top: 130px;
-    left: calc(100% + 61px);
-    animation: house 2s infinite linear;
-    animation-delay: 1s;
-    z-index: -1;
-}
-
-@keyframes jump {
-    0% {
-        top: 400px;
+var character = document.getElementById("character");
+var block = document.getElementById("block");
+function jump() {
+    if (character.classList != "animate") {
+        character.classList.add("animate");
     }
-
-    30% {
-        top: 220px;
-    }
-
-    50% {
-        top: 200px;
-    }
-
-    70% {
-        top: 220px;
-    }
-
-    100% {
-        top: 400px;
-    }
+    setTimeout(function () {
+        character.classList.remove("animate")
+    }, 500);
 }
 
-@keyframes block {
-    0% {
-        left: 912px;
-    }
+var refreshBtn = document.getElementById('refresh-btn');
+refreshBtn.addEventListener('click', function () {
+    location.reload(); // restart
+});
 
-    100% {
-        left: -88px;
-    }
-}
+// ban scrolling
+document.body.addEventListener('touchmove', function (event) {
+    event.preventDefault();
+}, false);
 
-@keyframes tree {
-    0% {
-        left: 1000px;
-    }
 
-    100% {
-        left: -200px;
-    }
-}
 
-@keyframes house {
-    0% {
-        left: 1000px;
+var checkAhead = setInterval(function () {
+    var characterTop =
+        parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+    var blockLeft =
+        parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+    if (blockLeft < 280 && blockLeft > 200 && characterTop >= 330) {
+        block.style.animation = "none";
+        block.style.display = "none";
+        alert("Game over! Click「RESTART」to play again!");
     }
-
-    100% {
-        left: -500px;
-    }
-}
+}, 10);
