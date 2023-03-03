@@ -1,5 +1,9 @@
-var character =
-    document.getElementById("character");
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var event = isMobile ? 'touchstart' : 'click';
+document.addEventListener(event, jump);
+
+
+var character = document.getElementById("character");
 var block = document.getElementById("block");
 function jump() {
     if (character.classList != "animate") {
@@ -11,9 +15,22 @@ function jump() {
 }
 
 var refreshBtn = document.getElementById('refresh-btn');
-refreshBtn.addEventListener('click', function() {
-  location.reload(); // restart
+refreshBtn.addEventListener('click', function () {
+    location.reload(); // restart
 });
+
+// var refreshBtn = document.getElementById('refresh-btn');
+
+// refreshBtn.addEventListener('touchstart', function() {
+//   location.reload(); // restart
+// });
+
+// ban scrolling
+document.body.addEventListener('touchmove', function(event) {
+  event.preventDefault();
+}, false);
+
+
 
 var checkAhead = setInterval(function () {
     var characterTop =
