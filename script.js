@@ -23,6 +23,6 @@ var checkAhead = setInterval(function () {
     if (blockLeft < 280 && blockLeft > 200 && characterTop >= 330) {
         block.style.animation = "none";
         block.style.display = "none";
-        alert("Game over! Click RESTART to play again!");
+        alert("Game over! Click「RESTART」to play again!");
     }
 }, 10);
