@@ -12,7 +12,7 @@ function jump() {
 
 var refreshBtn = document.getElementById('refresh-btn');
 refreshBtn.addEventListener('click', function() {
-  location.reload(); // 刷新当前页面
+  location.reload(); // restart
 });
 
 var checkAhead = setInterval(function () {
