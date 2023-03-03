@@ -26,8 +26,8 @@ refreshBtn.addEventListener('click', function () {
 // });
 
 // ban scrolling
-document.body.addEventListener('touchmove', function(event) {
-  event.preventDefault();
+document.body.addEventListener('touchmove', function (event) {
+    event.preventDefault();
 }, false);
 
 
